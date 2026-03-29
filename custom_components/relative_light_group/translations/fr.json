@@ -1,0 +1,41 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Créer un groupe de lumières relatif",
+        "description": "Créez un groupe de lumières avec contrôle de luminosité relative. Les changements de luminosité sont distribués proportionnellement entre les lumières allumées.",
+        "data": {
+          "name": "Nom",
+          "entities": "Entités lumineuses",
+          "all": "Toutes les entités doivent être allumées",
+          "hide_members": "Masquer les membres",
+          "remember_on_state": "Mémoriser l'état allumé/éteint",
+          "remember_brightness": "Mémoriser la luminosité"
+        },
+        "data_description": {
+          "all": "Si activé, le groupe est considéré comme allumé uniquement lorsque tous les membres sont allumés. Si désactivé, le groupe est allumé lorsqu'un membre quelconque est allumé.",
+          "remember_on_state": "Si activé, lorsque le groupe est éteint puis rallumé, seules les lumières précédemment allumées seront rallumées.",
+          "remember_brightness": "Si activé, le groupe mémorise la luminosité individuelle de chaque lumière. Les proportions sont préservées même après avoir atteint les limites de luminosité. La luminosité individuelle ne peut être modifiée que directement sur chaque lumière, pas depuis le groupe."
+        }
+      }
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "data": {
+          "entities": "Entités lumineuses",
+          "all": "Toutes les entités doivent être allumées",
+          "hide_members": "Masquer les membres",
+          "remember_on_state": "Mémoriser l'état allumé/éteint",
+          "remember_brightness": "Mémoriser la luminosité"
+        },
+        "data_description": {
+          "all": "Si activé, le groupe est considéré comme allumé uniquement lorsque tous les membres sont allumés. Si désactivé, le groupe est allumé lorsqu'un membre quelconque est allumé.",
+          "remember_on_state": "Si activé, lorsque le groupe est éteint puis rallumé, seules les lumières précédemment allumées seront rallumées.",
+          "remember_brightness": "Si activé, le groupe mémorise la luminosité individuelle de chaque lumière. Les proportions sont préservées même après avoir atteint les limites de luminosité. La luminosité individuelle ne peut être modifiée que directement sur chaque lumière, pas depuis le groupe."
+        }
+      }
+    }
+  }
+}

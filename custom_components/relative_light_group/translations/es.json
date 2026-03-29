@@ -1,0 +1,41 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Crear grupo de luces relativo",
+        "description": "Crea un grupo de luces con control de brillo relativo. Los cambios de brillo se distribuyen proporcionalmente entre las luces encendidas.",
+        "data": {
+          "name": "Nombre",
+          "entities": "Entidades de luz",
+          "all": "Todas las entidades deben estar encendidas",
+          "hide_members": "Ocultar miembros",
+          "remember_on_state": "Recordar estado encendido/apagado",
+          "remember_brightness": "Recordar brillo"
+        },
+        "data_description": {
+          "all": "Si está activado, el grupo se considera encendido solo cuando todos los miembros están encendidos. Si está desactivado, el grupo está encendido cuando cualquier miembro está encendido.",
+          "remember_on_state": "Si está activado, cuando el grupo se apaga y se vuelve a encender, solo se encenderán las luces que estaban previamente encendidas.",
+          "remember_brightness": "Si está activado, el grupo recuerda el brillo individual de cada luz. Las proporciones se mantienen incluso al alcanzar los límites de brillo. El brillo individual solo puede modificarse directamente en cada luz, no desde el grupo."
+        }
+      }
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "data": {
+          "entities": "Entidades de luz",
+          "all": "Todas las entidades deben estar encendidas",
+          "hide_members": "Ocultar miembros",
+          "remember_on_state": "Recordar estado encendido/apagado",
+          "remember_brightness": "Recordar brillo"
+        },
+        "data_description": {
+          "all": "Si está activado, el grupo se considera encendido solo cuando todos los miembros están encendidos. Si está desactivado, el grupo está encendido cuando cualquier miembro está encendido.",
+          "remember_on_state": "Si está activado, cuando el grupo se apaga y se vuelve a encender, solo se encenderán las luces que estaban previamente encendidas.",
+          "remember_brightness": "Si está activado, el grupo recuerda el brillo individual de cada luz. Las proporciones se mantienen incluso al alcanzar los límites de brillo. El brillo individual solo puede modificarse directamente en cada luz, no desde el grupo."
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Criar grupo de luzes relativo",
+        "description": "Crie um grupo de luzes com controle de brilho relativo. As alterações de brilho são distribuídas proporcionalmente entre as luzes acesas.",
+        "data": {
+          "name": "Nome",
+          "entities": "Entidades de luz",
+          "all": "Todas as entidades devem estar ligadas",
+          "hide_members": "Ocultar membros",
+          "remember_on_state": "Lembrar estado ligado/desligado",
+          "remember_brightness": "Lembrar brilho"
+        },
+        "data_description": {
+          "all": "Se ativado, o grupo é considerado ligado apenas quando todos os membros estão ligados. Se desativado, o grupo está ligado quando qualquer membro está ligado.",
+          "remember_on_state": "Se ativado, quando o grupo é desligado e ligado novamente, apenas as luzes que estavam previamente ligadas serão ligadas.",
+          "remember_brightness": "Se ativado, o grupo lembra o brilho individual de cada luz. As proporções são mantidas mesmo após atingir os limites de brilho. O brilho individual só pode ser alterado diretamente em cada luz, não a partir do grupo."
+        }
+      }
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "data": {
+          "entities": "Entidades de luz",
+          "all": "Todas as entidades devem estar ligadas",
+          "hide_members": "Ocultar membros",
+          "remember_on_state": "Lembrar estado ligado/desligado",
+          "remember_brightness": "Lembrar brilho"
+        },
+        "data_description": {
+          "all": "Se ativado, o grupo é considerado ligado apenas quando todos os membros estão ligados. Se desativado, o grupo está ligado quando qualquer membro está ligado.",
+          "remember_on_state": "Se ativado, quando o grupo é desligado e ligado novamente, apenas as luzes que estavam previamente ligadas serão ligadas.",
+          "remember_brightness": "Se ativado, o grupo lembra o brilho individual de cada luz. As proporções são mantidas mesmo após atingir os limites de brilho. O brilho individual só pode ser alterado diretamente em cada luz, não a partir do grupo."
+        }
+      }
+    }
+  }
+}

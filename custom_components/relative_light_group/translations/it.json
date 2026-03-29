@@ -1,0 +1,41 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Crea gruppo luci relativo",
+        "description": "Crea un gruppo di luci con controllo della luminosità relativa. Le variazioni di luminosità vengono distribuite proporzionalmente tra le luci accese.",
+        "data": {
+          "name": "Nome",
+          "entities": "Entità luminose",
+          "all": "Tutte le entità devono essere accese",
+          "hide_members": "Nascondi membri",
+          "remember_on_state": "Ricorda stato acceso/spento",
+          "remember_brightness": "Ricorda luminosità"
+        },
+        "data_description": {
+          "all": "Se abilitato, il gruppo è considerato acceso solo quando tutti i membri sono accesi. Se disabilitato, il gruppo è acceso quando un qualsiasi membro è acceso.",
+          "remember_on_state": "Se abilitato, quando il gruppo viene spento e riacceso, si accenderanno solo le luci che erano precedentemente accese.",
+          "remember_brightness": "Se abilitato, il gruppo ricorda la luminosità individuale di ogni luce. Le proporzioni vengono mantenute anche dopo aver raggiunto i limiti di luminosità. La luminosità individuale può essere modificata solo direttamente su ogni luce, non dal gruppo."
+        }
+      }
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "data": {
+          "entities": "Entità luminose",
+          "all": "Tutte le entità devono essere accese",
+          "hide_members": "Nascondi membri",
+          "remember_on_state": "Ricorda stato acceso/spento",
+          "remember_brightness": "Ricorda luminosità"
+        },
+        "data_description": {
+          "all": "Se abilitato, il gruppo è considerato acceso solo quando tutti i membri sono accesi. Se disabilitato, il gruppo è acceso quando un qualsiasi membro è acceso.",
+          "remember_on_state": "Se abilitato, quando il gruppo viene spento e riacceso, si accenderanno solo le luci che erano precedentemente accese.",
+          "remember_brightness": "Se abilitato, il gruppo ricorda la luminosità individuale di ogni luce. Le proporzioni vengono mantenute anche dopo aver raggiunto i limiti di luminosità. La luminosità individuale può essere modificata solo direttamente su ogni luce, non dal gruppo."
+        }
+      }
+    }
+  }
+}

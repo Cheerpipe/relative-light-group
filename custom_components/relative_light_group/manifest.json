@@ -1,0 +1,10 @@
+{
+  "domain": "relative_light_group",
+  "name": "Relative Light Group",
+  "codeowners": ["@Cheerpipe"],
+  "config_flow": true,
+  "documentation": "https://github.com/Cheerpipe/relative-light-group",
+  "integration_type": "helper",
+  "iot_class": "calculated",
+  "version": "1.0.0"
+}

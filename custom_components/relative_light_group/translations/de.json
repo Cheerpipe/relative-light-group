@@ -1,0 +1,41 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Relative Lichtgruppe erstellen",
+        "description": "Erstellen Sie eine Lichtgruppe mit relativer Helligkeitssteuerung. Helligkeitsänderungen werden proportional auf die eingeschalteten Lichter verteilt.",
+        "data": {
+          "name": "Name",
+          "entities": "Licht-Entitäten",
+          "all": "Alle Entitäten müssen eingeschaltet sein",
+          "hide_members": "Mitglieder ausblenden",
+          "remember_on_state": "Ein/Aus-Zustand merken",
+          "remember_brightness": "Helligkeit merken"
+        },
+        "data_description": {
+          "all": "Wenn aktiviert, gilt die Gruppe nur als eingeschaltet, wenn alle Mitglieder eingeschaltet sind. Wenn deaktiviert, ist die Gruppe eingeschaltet, wenn ein beliebiges Mitglied eingeschaltet ist.",
+          "remember_on_state": "Wenn aktiviert, werden beim erneuten Einschalten der Gruppe nur die Lichter eingeschaltet, die zuvor eingeschaltet waren.",
+          "remember_brightness": "Wenn aktiviert, merkt sich die Gruppe die individuelle Helligkeit jedes Lichts. Verhältnisse bleiben auch bei Helligkeitsgrenzen erhalten. Die individuelle Helligkeit kann nur direkt an jedem Licht geändert werden, nicht über die Gruppe."
+        }
+      }
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "data": {
+          "entities": "Licht-Entitäten",
+          "all": "Alle Entitäten müssen eingeschaltet sein",
+          "hide_members": "Mitglieder ausblenden",
+          "remember_on_state": "Ein/Aus-Zustand merken",
+          "remember_brightness": "Helligkeit merken"
+        },
+        "data_description": {
+          "all": "Wenn aktiviert, gilt die Gruppe nur als eingeschaltet, wenn alle Mitglieder eingeschaltet sind. Wenn deaktiviert, ist die Gruppe eingeschaltet, wenn ein beliebiges Mitglied eingeschaltet ist.",
+          "remember_on_state": "Wenn aktiviert, werden beim erneuten Einschalten der Gruppe nur die Lichter eingeschaltet, die zuvor eingeschaltet waren.",
+          "remember_brightness": "Wenn aktiviert, merkt sich die Gruppe die individuelle Helligkeit jedes Lichts. Verhältnisse bleiben auch bei Helligkeitsgrenzen erhalten. Die individuelle Helligkeit kann nur direkt an jedem Licht geändert werden, nicht über die Gruppe."
+        }
+      }
+    }
+  }
+}
