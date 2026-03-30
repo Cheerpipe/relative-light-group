@@ -5,6 +5,7 @@ from __future__ import annotations
 from collections import Counter, deque
 import itertools
 import logging
+import time
 from typing import Any, cast
 
 from homeassistant.components import light
@@ -45,7 +46,13 @@ from homeassistant.core import HomeAssistant, callback
 from homeassistant.helpers import entity_registry as er
 from homeassistant.helpers.entity_platform import AddConfigEntryEntitiesCallback
 
-from .const import CONF_ALL, CONF_REMEMBER_BRIGHTNESS, CONF_REMEMBER_ON_STATE
+from .const import (
+    CONF_ALL,
+    CONF_DEBOUNCE_ENABLED,
+    CONF_DEBOUNCE_TIME,
+    CONF_REMEMBER_BRIGHTNESS,
+    CONF_REMEMBER_ON_STATE,
+)
 from .entity import GroupEntity
 from .util import (
     coerce_in,
@@ -115,6 +122,8 @@ async def async_setup_entry(
     mode = config_entry.options.get(CONF_ALL, False)
     remember_on_state = config_entry.options.get(CONF_REMEMBER_ON_STATE, False)
     remember_brightness = config_entry.options.get(CONF_REMEMBER_BRIGHTNESS, False)
+    debounce_enabled = config_entry.options.get(CONF_DEBOUNCE_ENABLED, True)
+    debounce_time = config_entry.options.get(CONF_DEBOUNCE_TIME, 2000)
 
     async_add_entities(
         [
@@ -125,6 +134,8 @@ async def async_setup_entry(
                 mode,
                 remember_on_state,
                 remember_brightness,
+                debounce_enabled,
+                debounce_time,
             )
         ]
     )
@@ -142,6 +153,8 @@ def async_create_preview_light(
         validated_config.get(CONF_ALL, False),
         validated_config.get(CONF_REMEMBER_ON_STATE, False),
         validated_config.get(CONF_REMEMBER_BRIGHTNESS, False),
+        validated_config.get(CONF_DEBOUNCE_ENABLED, True),
+        validated_config.get(CONF_DEBOUNCE_TIME, 2000),
     )
 
 
@@ -169,6 +182,8 @@ class RelativeLightGroup(GroupEntity, LightEntity):
         mode: bool | None,
         remember_on_state: bool,
         remember_brightness: bool,
+        debounce_enabled: bool,
+        debounce_time: int,
     ) -> None:
         """Initialize a relative light group."""
         self._entity_ids = entity_ids
@@ -185,6 +200,10 @@ class RelativeLightGroup(GroupEntity, LightEntity):
         self._remember_brightness = remember_brightness
         self._base_brightness: dict[str, int] = {}
         self._last_command_contexts: deque[str] = deque(maxlen=50)
+
+        self._debounce_enabled = debounce_enabled
+        self._debounce_time = debounce_time
+        self._last_command_time = 0.0
 
         self._attr_color_mode = ColorMode.UNKNOWN
         self._attr_supported_color_modes = {ColorMode.ONOFF}
@@ -308,9 +327,22 @@ class RelativeLightGroup(GroupEntity, LightEntity):
         if self._context and self._context.id not in self._last_command_contexts:
             self._last_command_contexts.append(self._context.id)
 
+        self._last_command_time = time.monotonic()
+
         data = {
             key: value for key, value in kwargs.items() if key in FORWARDED_ATTRIBUTES
         }
+
+        # Optimistic state update
+        self._attr_is_on = True
+        if ATTR_BRIGHTNESS in data:
+            self._attr_brightness = data[ATTR_BRIGHTNESS]
+        if ATTR_HS_COLOR in data:
+            self._attr_hs_color = data[ATTR_HS_COLOR]
+        if ATTR_RGB_COLOR in data:
+            self._attr_rgb_color = data[ATTR_RGB_COLOR]
+        if ATTR_COLOR_TEMP_KELVIN in data:
+            self._attr_color_temp_kelvin = data[ATTR_COLOR_TEMP_KELVIN]
 
         on_lights = self._get_on_lights()
         has_brightness = ATTR_BRIGHTNESS in data
@@ -488,6 +520,9 @@ class RelativeLightGroup(GroupEntity, LightEntity):
         if self._context and self._context.id not in self._last_command_contexts:
             self._last_command_contexts.append(self._context.id)
 
+        self._last_command_time = time.monotonic()
+        self._attr_is_on = False
+
         # Remember which lights are on before turning off
         if self._remember_on_state:
             self._remembered_lights = self._get_on_entity_ids()
@@ -509,6 +544,11 @@ class RelativeLightGroup(GroupEntity, LightEntity):
     @callback
     def async_update_group_state(self) -> None:
         """Query all members and determine the light group state."""
+        if self._debounce_enabled and (
+            time.monotonic() - self._last_command_time < self._debounce_time / 1000
+        ):
+            return
+
         self._update_assumed_state_from_members()
 
         states = [

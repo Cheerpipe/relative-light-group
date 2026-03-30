@@ -25,6 +25,8 @@ from .const import (
     CONF_HIDE_MEMBERS,
     CONF_REMEMBER_BRIGHTNESS,
     CONF_REMEMBER_ON_STATE,
+    CONF_DEBOUNCE_ENABLED,
+    CONF_DEBOUNCE_TIME,
     DOMAIN,
 )
 from .entity import GroupEntity
@@ -49,6 +51,16 @@ def light_config_schema() -> vol.Schema:
             vol.Required(
                 CONF_REMEMBER_BRIGHTNESS, default=False
             ): selector.BooleanSelector(),
+            vol.Required(
+                CONF_DEBOUNCE_ENABLED, default=True
+            ): selector.BooleanSelector(),
+            vol.Required(
+                CONF_DEBOUNCE_TIME, default=2000
+            ): selector.NumberSelector(
+                selector.NumberSelectorConfig(
+                    min=0, max=10000, step=100, mode=selector.NumberSelectorMode.BOX, unit_of_measurement="ms"
+                )
+            ),
         }
     )
 
@@ -81,6 +93,16 @@ async def light_options_schema(
             vol.Required(
                 CONF_REMEMBER_BRIGHTNESS, default=False
             ): selector.BooleanSelector(),
+            vol.Required(
+                CONF_DEBOUNCE_ENABLED, default=True
+            ): selector.BooleanSelector(),
+            vol.Required(
+                CONF_DEBOUNCE_TIME, default=2000
+            ): selector.NumberSelector(
+                selector.NumberSelectorConfig(
+                    min=0, max=10000, step=100, mode=selector.NumberSelectorMode.BOX, unit_of_measurement="ms"
+                )
+            ),
         }
     )
 

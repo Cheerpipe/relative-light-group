@@ -10,6 +10,8 @@ Unlike standard light groups, this integration maintains the relative brightness
 - **Only-On-Lights** — Color, effect, color temperature, and other visual attribute changes are only sent to lights that are currently on. Off lights remain off.
 - **Remember on/off state** — If enabled, when the group is turned off and on again, only the lights that were previously on will turn on.
 - **Remember brightness** — If enabled, the group remembers each light's individual brightness. Ratios are preserved even after hitting brightness limits. Individual brightness can only be changed directly on each light, not from the group.
+- **Optimistic State Debounce** — Prevents UI "bouncing" (slider jumping) by ignoring member state updates for a short period after a group command is sent.
+- **Configurable Debounce Time** — Adjust the debounce window (default 2000ms) to match your network's latency.
 - **Native Group Features** — Supports the same standard options as the native integration: selecting light entities, "All entities must be on", and "Hide members".
 - **Config Flow UI** — Create and configure groups entirely through the Home Assistant UI (Settings → Helpers).
 - **Multi-language** — Localized in English, Spanish, German, French, Italian, and Portuguese.
@@ -46,6 +48,8 @@ This integration supports the same standard options as the native group integrat
 |--------|-------------|
 | **Remember on/off state** | If enabled, when the group is turned off and on again, only the lights that were previously on will turn on. |
 | **Remember brightness** | If enabled, the group remembers each light's individual brightness. Ratios are preserved even after hitting brightness limits. Individual brightness can only be changed directly on each light, not from the group. |
+| **Enable optimistic state debounce** | If enabled, the group ignores state updates from members for a short period after a command is sent, preventing the UI slider from jumping. |
+| **Debounce time** | The amount of time in milliseconds to ignore member state updates (default 2000ms). |
 
 ## How Relative Brightness Works
 
