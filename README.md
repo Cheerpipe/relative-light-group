@@ -1,5 +1,8 @@
 # Relative Light Group
 
+![example](https://github.com/user-attachments/assets/c2cb4651-b97e-4279-8762-a96722c17bc0)
+
+
 A custom Home Assistant integration that creates light groups with **relative brightness control**. This integration is built upon the codebase of the official Home Assistant `group` integration, extending its native functionality.
 
 Unlike standard light groups, this integration maintains the relative brightness ratio between lights when adjusting the group brightness. Changes to color, effects, and other attributes are only applied to lights that are currently on — off lights are never accidentally turned on by attribute changes.
